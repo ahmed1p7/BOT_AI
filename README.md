@@ -47,6 +47,14 @@ An advanced, multi-functional WhatsApp bot that runs on Vercel. This bot offers 
 - `!memory [sequence]` - Answer to Memory Game
 - `!hangman` - Start Hangman Game
 - `!hangman [letter]` - Guess a letter in Hangman
+- `!wordguess` - Start Word Guessing Game
+- `!wordguess [letter]` - Guess a letter in Word Guessing
+- `!quiz` - Play Quiz Game
+- `!math` - Play Math Challenge
+- `!match [card_id]` - Flip a card in Memory Match (1-16)
+- `!dice [bet_amount]` - Play Dice Game with betting
+- `!chain` - Start Word Chain Game
+- `!chain [word]` - Add a word to the chain
 
 ## Deployment
 
