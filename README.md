@@ -34,6 +34,20 @@ An advanced, multi-functional WhatsApp bot that runs on Vercel. This bot offers 
 - `!add [number]` - Add member to group
 - `!remove [number] - Remove member from group
 
+### Fun Games
+- `!rps [rock/paper/scissors]` - Play Rock Paper Scissors
+- `!guess [number]` - Play Number Guessing Game
+- `!tictactoe [position 0-8]` - Play Tic Tac Toe
+- `!tictactoe new` - Start new Tic Tac Toe game
+- `!trivia` - Play Trivia Game
+- `!answer [option]` - Answer to Trivia
+- `!wordscramble` - Play Word Scramble
+- `!unscramble [word]` - Answer to Word Scramble
+- `!memory` - Play Memory Game
+- `!memory [sequence]` - Answer to Memory Game
+- `!hangman` - Start Hangman Game
+- `!hangman [letter]` - Guess a letter in Hangman
+
 ## Deployment
 
 ### To Vercel
