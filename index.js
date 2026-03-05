@@ -7,6 +7,7 @@ const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 const { games, TicTacToe, Hangman, activeGames } = require('./games');
+const { enhancedGames } = require('./enhanced_features');
 
 // Create Express app
 const app = express();
