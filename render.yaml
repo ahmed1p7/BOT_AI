@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: gatabot-md
+    env: node
+    region: frankfurt
+    plan: free
+    buildCommand: npm install
+    startCommand: node index.js
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 18.0.0
+      - key: PORT
+        value: 3000
+    disk:
+      name: auth-data
+      mountPath: /tmp/auth
+      sizeGB: 1
