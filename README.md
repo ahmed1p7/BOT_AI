@@ -1,107 +1,134 @@
-# Advanced WhatsApp Bot
+# 🤖 GataBot-MD - بوت واتساب المتقدم
 
-An advanced, multi-functional WhatsApp bot that runs on Vercel. This bot offers enhanced functionality compared to basic bots like GataBot-MD, with support for media downloading, AI integration, and more.
+بوت واتساب متطور باللغة العربية يعمل على منصة Vercel باستخدام مكتبة Baileys.
 
-## Features
+## ✨ المميزات
 
-- ✅ Multi-device support using Baileys
-- ✅ Runs seamlessly on Vercel
-- ✅ Command-based interface
-- ✅ Media downloading capabilities
-- ✅ AI integration (OpenAI)
-- ✅ Group management tools
-- ✅ Web-based QR code display
-- ✅ REST API endpoints
-- ✅ Auto-reconnection
-- ✅ Message storage
+- 🌐 يعمل على Vercel مجاناً
+- 📱 دعم كامل للأجهزة المتعددة (Multi-Device)
+- 🎮 ألعاب تفاعلية (TicTacToe, Hangman)
+- 🤖 ذكاء اصطناعي للتحدث مع المستخدمين
+- 🎵 تحميل فيديوهات يوتيوب
+- 👥 إدارة المجموعات
+- 🌍 واجهة عربية كاملة
 
-## Commands
+## 📋 الأوامر المتاحة
 
-### General Commands
-- `!ping` - Check bot status
-- `!info` - Show bot information
-- `!help` - Show help message
+### الأوامر العامة:
+- `!ping` - فحص حالة البوت
+- `!info` - عرض معلومات البوت
+- `!help` - عرض رسالة المساعدة
 
-### Media Commands
-- `!yt [URL]` - Download YouTube video
-- `!play [song name]` - Search and play music
+### أوامر الوسائط:
+- `!yt [URL]` - تحميل فيديو من يوتيوب
+- `!play [اسم الأغنية]` - البحث وتشغيل الموسيقى
 
-### AI Commands
-- `!gpt [prompt]` - Chat with AI assistant
+### أوامر الذكاء الاصطناعي:
+- `!gpt [السؤال]` - الدردشة مع مساعد الذكاء الاصطناعي
 
-### Group Commands
-- `!groupinfo` - Get group information
-- `!add [number]` - Add member to group
-- `!remove [number] - Remove member from group
+### أوامر المجموعات:
+- `!groupinfo` - الحصول على معلومات المجموعة
+- `!add [الرقم]` - إضافة عضو إلى المجموعة
+- `!remove [الرقم]` - إزالة عضو من المجموعة
 
-### Fun Games
-- `!rps [rock/paper/scissors]` - Play Rock Paper Scissors
-- `!guess [number]` - Play Number Guessing Game
-- `!tictactoe [position 0-8]` - Play Tic Tac Toe
-- `!tictactoe new` - Start new Tic Tac Toe game
-- `!trivia` - Play Trivia Game
-- `!answer [option]` - Answer to Trivia
-- `!wordscramble` - Play Word Scramble
-- `!unscramble [word]` - Answer to Word Scramble
-- `!memory` - Play Memory Game
-- `!memory [sequence]` - Answer to Memory Game
-- `!hangman` - Start Hangman Game
-- `!hangman [letter]` - Guess a letter in Hangman
-- `!wordguess` - Start Word Guessing Game
-- `!wordguess [letter]` - Guess a letter in Word Guessing
-- `!quiz` - Play Quiz Game
-- `!math` - Play Math Challenge
-- `!match [card_id]` - Flip a card in Memory Match (1-16)
-- `!dice [bet_amount]` - Play Dice Game with betting
-- `!chain` - Start Word Chain Game
-- `!chain [word]` - Add a word to the chain
+## 🚀 التثبيت والنشر
 
-## Deployment
+### 1. استنساخ المستودع:
+```bash
+git clone <repository-url>
+cd GataBot-MD
+```
 
-### To Vercel
-
-1. Fork this repository
-2. Create a new project on [Vercel](https://vercel.com/)
-3. Import your forked repository
-4. Add your environment variables in the Vercel dashboard
-5. Deploy!
-
-### Environment Variables
-
-- `OWNER_NUMBER`: Your WhatsApp number (without +)
-- `OPENAI_API_KEY`: Your OpenAI API key (optional)
-- `MONGODB_URI`: MongoDB connection string (optional)
-- `SESSION_NAME`: Session name for authentication data
-
-### Local Development
-
+### 2. تثبيت المكتبات:
 ```bash
 npm install
+```
+
+### 3. تشغيل البوت محلياً:
+```bash
 npm start
 ```
 
-After running, scan the QR code displayed in the terminal or visit http://localhost:3000/qrcode to get the QR code in your browser.
+### 4. النشر على Vercel:
 
-## API Endpoints
+#### أ. قم بتثبيت Vercel CLI:
+```bash
+npm install -g vercel
+```
 
-- `GET /` - Health check page
-- `GET /qrcode` - QR code page (when needed)
-- `POST /send-message` - Send a message to a WhatsApp number
+#### ب. انشر البوت:
+```bash
+vercel --prod
+```
 
-## Architecture
+#### ج. إعداد متغيرات البيئة في Vercel:
+- `OWNER_NUMBER`: رقم المالك (مثال: 966500000000)
+- `OPENAI_API_KEY`: مفتاح OpenAI API (اختياري)
 
-This bot uses:
-- [@whiskeysockets/baileys](https://github.com/WhiskeySockets/Baileys) - WhatsApp Web API
-- [Express.js](https://expressjs.com/) - Web framework
-- [Vercel](https://vercel.com/) - Deployment platform
-- [MongoDB](https://www.mongodb.com/) - Optional database storage
+## 📁 هيكل الملفات
 
-## Security
+```
+GataBot-MD/
+├── index.js              # الملف الرئيسي للبوت
+├── games.js             # الألعاب التفاعلية
+├── enhanced_features.js # ميزات إضافية
+├── package.json         # تبعيات المشروع
+├── vercel.json          # إعدادات Vercel
+├── public/              # الملفات العامة
+│   └── qrcode.html      # صفحة رمز الاستجابة
+└── README.md            # هذا الملف
+```
 
-- Authentication data is stored locally in `baileys_auth_info/`
-- Input validation for all commands
-- Rate limiting considerations for production use
+## 🔧 متغيرات البيئة المطلوبة
 
-## License
+| المتغير | الوصف | مطلوب |
+|---------|-------|--------|
+| `OWNER_NUMBER` | رقم هاتف المالك بالتنسيق الدولي | لا |
+| `OPENAI_API_KEY` | مفتاح API لـ OpenAI | لا |
+| `PORT` | منفذ الخادم (افتراضي: 3000) | لا |
 
-MIT
+## 💡 استخدامات إضافية
+
+### إرسال رسالة عبر API:
+```bash
+POST /send-message
+Content-Type: application/json
+
+{
+  "number": "966500000000",
+  "message": "مرحباً!"
+}
+```
+
+### عرض رمز الاستجابة:
+```
+GET /qrcode
+```
+
+## ⚠️ ملاحظات مهمة
+
+1. يجب مسح رمز QR خلال 60 ثانية من إنشائه
+2. لا تستخدم البوت في أنشطة غير قانونية
+3. احترم خصوصية المستخدمين
+4. قد يتطلب بعض الأوامر اتصال إنترنت قوي
+
+## 🛠️ التطوير
+
+للمساهمة في تطوير البوت:
+1. قم بعمل Fork للمستودع
+2. أنشئ فرع جديد (`git checkout -b feature/amazing-feature`)
+3. قم بالتعديل (`git commit -m 'Add amazing feature'`)
+4. ارفع التعديلات (`git push origin feature/amazing-feature`)
+5. افتح Pull Request
+
+## 📄 الترخيص
+
+هذا المشروع مرخص بموجب ترخيص MIT.
+
+## 🤝 التواصل
+
+للأسئلة والاستفسارات، يرجى فتح Issue في المستودع.
+
+---
+
+**تم التطوير بواسطة GataBot-MD Team** ❤️

@@ -47,7 +47,7 @@ async function connectToWhatsApp() {
         const { connection, lastDisconnect, qr } = update;
         
         if (qr) {
-            console.log('QR Code generated, scanning...');
+            console.log('تم إنشاء رمز الاستجابة، جاري المسح...');
             QRCode.generate(qr, { small: true });
             
             // For Vercel deployment, we'll also save QR to a file
@@ -56,9 +56,9 @@ async function connectToWhatsApp() {
                 const qrDataUrl = await qrcode.toDataURL(qr);
                 fs.writeFileSync('./public/qrcode.html', `
                     <!DOCTYPE html>
-                    <html>
+                    <html dir="rtl">
                     <head>
-                        <title>WhatsApp Bot QR Code</title>
+                        <title>رمز استجابة GataBot-MD</title>
                         <style>
                             body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #f0f0f0; }
                             .container { text-align: center; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
@@ -67,9 +67,9 @@ async function connectToWhatsApp() {
                     </head>
                     <body>
                         <div class="container">
-                            <h1>Scan QR Code</h1>
+                            <h1>امسح رمز الاستجابة</h1>
                             <img src="${qrDataUrl}" alt="QR Code" />
-                            <p>Scan this QR code with your WhatsApp to connect the bot</p>
+                            <p>امسح رمز الاستجابة هذا بواتساب لربط البوت</p>
                         </div>
                     </body>
                     </html>
@@ -81,18 +81,18 @@ async function connectToWhatsApp() {
 
         if (connection === 'close') {
             const shouldReconnect = lastDisconnect?.error?.output?.statusCode !== DisconnectReason.loggedOut;
-            console.log('Connection closed due to ', lastDisconnect?.error?.output?.statusCode, 'reconnecting ', shouldReconnect);
+            console.log('تم إغلاق الاتصال بسبب ', lastDisconnect?.error?.output?.statusCode, 'جاري إعادة الاتصال ', shouldReconnect);
             
             if (shouldReconnect) {
                 connectToWhatsApp();
             }
         } else if (connection === 'open') {
-            console.log('Connected to WhatsApp Web!');
+            console.log('تم الاتصال بواتساب ويب!');
             
             // Send welcome message to owner if specified
             if (process.env.OWNER_NUMBER) {
                 await sock.sendMessage(`${process.env.OWNER_NUMBER}@s.whatsapp.net`, { 
-                    text: '✅ Advanced WhatsApp Bot is now connected!' 
+                    text: '✅ تم توصيل GataBot-MD بنجاح!' 
                 });
             }
         }
@@ -119,7 +119,7 @@ async function connectToWhatsApp() {
             }
             
             if (messageText) {
-                console.log(`Received from ${senderName} (${senderNumber}): ${messageText}`);
+                console.log(`تم الاستلام من ${senderName} (${senderNumber}): ${messageText}`);
                 
                 // Process commands
                 await handleCommand(message, messageText.toLowerCase(), senderNumber);
@@ -134,80 +134,80 @@ async function handleCommand(message, command, senderNumber) {
     
     // Basic command responses
     if (command.startsWith('!ping')) {
-        await sock.sendMessage(senderJid, { text: 'pong! 🏓' });
+        await sock.sendMessage(senderJid, { text: 'بونج! 🏓' });
     } 
     else if (command.startsWith('!info')) {
         const infoMessage = `
-🤖 *Advanced WhatsApp Bot Info*
-• Version: 1.0.0
-• Platform: Vercel
-• Engine: Baileys/Multi-Device
-• Commands: !ping, !info, !help, !yt [url], !gpt [prompt]
-• Status: Online ✅
+🤖 *معلومات GataBot-MD*
+• الإصدار: 2.0.0
+• المنصة: Vercel
+• المحرك: Baileys/Multi-Device
+• الأوامر: !ping, !info, !help, !yt [url], !gpt [prompt]
+• الحالة: متصل ✅
         `;
         await sock.sendMessage(senderJid, { text: infoMessage.trim() });
     } 
     else if (command.startsWith('!help')) {
         const helpMessage = `
-🤖 *Advanced WhatsApp Bot Commands*
+🤖 *أوامر GataBot-MD*
 
-*General Commands:*
-• !ping - Check bot status
-• !info - Show bot information
-• !help - Show this help message
+*الأوامر العامة:*
+• !ping - فحص حالة البوت
+• !info - عرض معلومات البوت
+• !help - عرض رسالة المساعدة هذه
 
-*Media Commands:*
-• !yt [URL] - Download YouTube video
-• !play [song name] - Search and play music
+*أوامر الوسائط:*
+• !yt [URL] - تحميل فيديو من يوتيوب
+• !play [اسم الأغنية] - البحث وتشغيل الموسيقى
 
-*AI Commands:*
-• !gpt [prompt] - Chat with AI assistant
+*أوامر الذكاء الاصطناعي:*
+• !gpt [السؤال] - الدردشة مع مساعد الذكاء الاصطناعي
 
-*Group Commands:*
-• !groupinfo - Get group information
-• !add [number] - Add member to group
-• !remove [number] - Remove member from group
+*أوامر المجموعات:*
+• !groupinfo - الحصول على معلومات المجموعة
+• !add [الرقم] - إضافة عضو إلى المجموعة
+• !remove [الرقم] - إزالة عضو من المجموعة
 
-More features coming soon! 💫
+المزيد من الميزات قادمة قريباً! 💫
         `;
         await sock.sendMessage(senderJid, { text: helpMessage.trim() });
     } 
     else if (command.startsWith('!yt ')) {
         const url = command.substring(4).trim();
         if (!url) {
-            await sock.sendMessage(senderJid, { text: '❌ Please provide a YouTube URL after the command.\nExample: !yt https://youtube.com/watch?v=...' });
+            await sock.sendMessage(senderJid, { text: '❌ يرجى توفير رابط يوتيوب بعد الأمر.\nمثال: !yt https://youtube.com/watch?v=...' });
             return;
         }
         
         // Simple YouTube download placeholder
-        await sock.sendMessage(senderJid, { text: `🎬 Attempting to download YouTube video: ${url}\n⏳ This might take a moment...` });
+        await sock.sendMessage(senderJid, { text: `🎬 جاري تحميل فيديو يوتيوب: ${url}\n⏳ قد يستغرق هذا لحظة...` });
     }
     else if (command.startsWith('!gpt ')) {
         const prompt = command.substring(5).trim();
         if (!prompt) {
-            await sock.sendMessage(senderJid, { text: '❌ Please provide a prompt after the command.\nExample: !gpt What is the weather today?' });
+            await sock.sendMessage(senderJid, { text: '❌ يرجى توفير نص بعد الأمر.\nمثال: !gpt ما هو الطقس اليوم؟' });
             return;
         }
         
         // Placeholder for OpenAI integration
-        await sock.sendMessage(senderJid, { text: `🤖 AI Response: This would be processed by OpenAI API with your prompt: "${prompt}"` });
+        await sock.sendMessage(senderJid, { text: `🤖 رد الذكاء الاصطناعي: سيتم معالجة هذا بواسطة OpenAI API مع سؤالك: "${prompt}"` });
     }
     else if (command.startsWith('!groupinfo') && senderJid.includes('@g.us')) {
         const groupMetadata = await sock.groupMetadata(senderJid);
         const groupInfo = `
-👥 *Group Information*
-• Name: ${groupMetadata.subject}
-• ID: ${groupMetadata.id}
-• Owner: ${groupMetadata.owner ? groupMetadata.owner.split('@')[0] : 'Unknown'}
-• Members: ${groupMetadata.participants.length} participants
-• Description: ${groupMetadata.desc || 'No description'}
+👥 *معلومات المجموعة*
+• الاسم: ${groupMetadata.subject}
+• المعرف: ${groupMetadata.id}
+• المالك: ${groupMetadata.owner ? groupMetadata.owner.split('@')[0] : 'غير معروف'}
+• الأعضاء: ${groupMetadata.participants.length} مشارك
+• الوصف: ${groupMetadata.desc || 'لا يوجد وصف'}
         `;
         await sock.sendMessage(senderJid, { text: groupInfo.trim() });
     }
     else {
         // Default response for unknown commands
         await sock.sendMessage(senderJid, { 
-            text: `🤖 I'm the Advanced WhatsApp Bot!\nType !help to see available commands.` 
+            text: `🤖 أنا بوت GataBot-MD!\nاكتب !help لرؤية الأوامر المتاحة.` 
         });
     }
 }
@@ -219,9 +219,10 @@ connectToWhatsApp();
 app.get('/', (req, res) => {
     res.send(`
         <!DOCTYPE html>
-        <html>
+        <html dir="rtl">
         <head>
-            <title>Advanced WhatsApp Bot</title>
+            <title>GataBot-MD - بوت واتساب</title>
+            <meta charset="UTF-8">
             <style>
                 body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #f0f0f0; }
                 .container { text-align: center; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
@@ -231,10 +232,11 @@ app.get('/', (req, res) => {
         </head>
         <body>
             <div class="container">
-                <h1>🤖 Advanced WhatsApp Bot</h1>
-                <p class="status">Status: Running</p>
-                <p>This bot is deployed on Vercel and ready to handle WhatsApp messages!</p>
-                <p>For bot connection, scan the QR code on your phone</p>
+                <h1>🤖 GataBot-MD</h1>
+                <p class="status">الحالة: يعمل ✅</p>
+                <p>تم نشر هذا البوت على Vercel وجاهز للتعامل مع رسائل واتساب!</p>
+                <p>لربط البوت، امسح رمز الاستجابة بهاتفك</p>
+                <p><a href="/qrcode" style="color: #25D366;">عرض رمز الاستجابة</a></p>
             </div>
         </body>
         </html>
@@ -246,7 +248,7 @@ app.get('/qrcode', (req, res) => {
     if (fs.existsSync('./public/qrcode.html')) {
         res.sendFile(path.resolve('./public/qrcode.html'));
     } else {
-        res.send('<h1>QR Code not available. Bot might already be connected.</h1>');
+        res.send('<h1>رمز الاستجابة غير متاح. قد يكون البوت متصلاً بالفعل.</h1>');
     }
 });
 
@@ -255,17 +257,17 @@ app.post('/send-message', express.json(), async (req, res) => {
     const { number, message } = req.body;
     
     if (!number || !message) {
-        return res.status(400).json({ error: 'Number and message are required' });
+        return res.status(400).json({ error: 'الرقم والرسالة مطلوبان' });
     }
     
     try {
         await sock.sendMessage(`${number}@s.whatsapp.net`, { text: message });
-        res.json({ success: true, message: 'Message sent successfully' });
+        res.json({ success: true, message: 'تم إرسال الرسالة بنجاح' });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
 
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`الخادم يعمل على المنفذ ${PORT}`);
 });
