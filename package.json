@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "termux": "pkg update -y && pkg upgrade -y && pkg install nodejs -y && pkg install git -y && npm install && node index.js"
   },
   "dependencies": {
     "@whiskeysockets/baileys": "^6.7.5",
