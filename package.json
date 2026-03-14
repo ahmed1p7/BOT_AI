@@ -6,11 +6,12 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "termux": "pkg update -y && pkg upgrade -y && pkg install nodejs -y && pkg install git -y && npm install && node index.js"
+    "termux": "node termux-bot.js"
   },
   "dependencies": {
     "@whiskeysockets/baileys": "^6.7.5",
-    "qrcode": "^1.5.3"
+    "qrcode": "^1.5.3",
+    "qrcode-terminal": "^0.12.0"
   },
   "keywords": [
     "whatsapp",

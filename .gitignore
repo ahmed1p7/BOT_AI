@@ -1,1 +1,4 @@
-Nothing should be ignored based on the provided file changes. The changes only include a markdown file (README_TERMUX.md) and a JSON configuration file (package.json), which are source/config files that should not be ignored.
+```
+node_modules/
+package-lock.json
+```
