@@ -1,4 +1,54 @@
-```
+# ═══════════════════════════════════════════════════════════════
+# Fᴀᴛɪᴍᴀ WhatsApp Bot - Git Ignore
+# ═══════════════════════════════════════════════════════════════
+
+# Dependencies
 node_modules/
 package-lock.json
-```
+yarn.lock
+
+# Build
+dist/
+build/
+*.tsbuildinfo
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Sessions
+data/sessions/*
+!data/sessions/.gitkeep
+
+# Media
+data/media/*
+!data/media/.gitkeep
+
+# Temp
+data/temp/*
+!data/temp/.gitkeep
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test
+coverage/
+.nyc_output/
+
+# Misc
+*.bak
+*.tmp

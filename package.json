@@ -1,27 +1,52 @@
 {
-  "name": "gatabot-md",
-  "version": "2.0.0",
-  "description": "بوت واتساب متقدم باللغة العربية - GataBot-MD",
-  "main": "index.js",
+  "name": "fatima-whatsapp-bot",
+  "version": "1.0.0",
+  "description": "بوت واتساب ذكي ومتطور - Fᴀᴛɪᴍᴀ WhatsApp Bot",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "termux": "node termux-bot.js"
-  },
-  "dependencies": {
-    "@whiskeysockets/baileys": "^6.7.5",
-    "qrcode": "^1.5.3",
-    "qrcode-terminal": "^0.12.0"
+    "start": "node dist/index.js",
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "lint": "eslint src/**/*.ts",
+    "test": "jest"
   },
   "keywords": [
     "whatsapp",
     "bot",
-    "vercel",
-    "baileys",
-    "automation",
     "arabic",
-    "gatabot"
+    "baileys",
+    "ai",
+    "chatbot"
   ],
-  "author": "GataBot-MD",
-  "license": "MIT"
+  "author": "Fᴀᴛɪᴍᴀ Team",
+  "license": "MIT",
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.6.0",
+    "pino": "^8.16.0",
+    "qrcode-terminal": "^0.12.0",
+    "node-cache": "^5.1.2",
+    "dotenv": "^16.3.1",
+    "mongoose": "^8.0.0",
+    "node-fetch": "^3.3.2",
+    "sharp": "^0.33.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "moment": "^2.29.4",
+    "z-ai-web-dev-sdk": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^20.9.0",
+    "@types/qrcode-terminal": "^0.12.2",
+    "@types/sharp": "^0.32.0",
+    "@types/fluent-ffmpeg": "^2.1.24",
+    "typescript": "^5.3.0",
+    "tsx": "^4.6.0",
+    "eslint": "^8.54.0",
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }
